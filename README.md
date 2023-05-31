@@ -1,4 +1,4 @@
-# ⚠️Disclaimer: the following benchmarks are outdated. ⚠️
+# ⚠️Disclaimer: the following benchmarks are outdated.
 
 Functional Benchmarks
 =====================
