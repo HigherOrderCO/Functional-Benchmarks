@@ -1,11 +1,10 @@
-# ⚠️Disclaimer: the following benchmarks are outdated.
 
 Functional Benchmarks
 =====================
 
 This repository contains a collection of benchmarks of functional programming languages and proof assistants. It is
 split in two categories, Checker and Runtime, which measure the time it takes to type-check and run a program,
-respectivelly. The main goal of this repository is to track [Kind2](https://github.com/kindelia/kind2)'s performance
+respectivelly. The main goal of this repository is to track [Kind](https://github.com/higherorderco/kind)'s performance
 compared to alternatives. 
 
 Type Checker
@@ -36,7 +35,7 @@ Main = refl
 
 ![](image/checker_nat_exp_.png)
 
-**Comments:** Kind2 is *many times* faster than alternatives, due to HVM's raw speed.
+**Comments:** Kind is *many times* faster than alternatives, due to HVM's raw speed.
 
 ### tree_fold
 
@@ -60,7 +59,7 @@ Main = refl
 
 ![](image/checker_tree_fold_.png)
 
-**Comments:** Kind2 is *many times* faster than alternatives, due to HVM's raw speed.
+**Comments:** Kind is *many times* faster than some alternatives, due to HVM's raw speed.
 
 ### nat_exp_church
 
@@ -82,7 +81,7 @@ Main = refl
 
 ![](image/checker_nat_exp_church_.png)
 
-**Comments:** Kind2 is *exponentially* faster than alternatives, due to HVM's optimal reduction.
+**Comments:** Kind is *exponentially* faster than alternatives, due to HVM's optimal reduction.
 
 ### tree_fold_church
 
@@ -104,7 +103,7 @@ Main = refl
 
 ![](image/checker_tree_fold_church_.png)
 
-**Comments:** Kind2 is *exponentially* faster than alternatives, due to HVM's optimal reduction.
+**Comments:** Kind is *exponentially* faster than alternatives, due to HVM's optimal reduction.
 
 ### vector
 
@@ -151,7 +150,7 @@ Range n xs = let m = (- n 1); Range m (Cons m xs)
 
 ![](image/runtime_list_fold_.png)
 
-**Comments:** Kind2 and Haskell have similar performance on sequential recursive algorithms.
+**Comments:** Kind and Haskell have similar performance on sequential recursive algorithms.
 
 ### tree_fold
 
@@ -169,7 +168,7 @@ Sum (Node a b) = (+ (Sum a) (Sum b))
 
 ![](image/runtime_tree_fold_.png)
 
-**Comments:** Kind2 outperforms Haskell on parallel recursive algorithms.
+**Comments:** Kind outperforms Haskell on parallel recursive algorithms.
 
 ### quicksort
 
@@ -179,7 +178,7 @@ Creates a large list of uint64's and sorts it. Measures runtime evaluation speed
 TODO
 ```
 
-**Note:** benchmark already available on [HVM](https://github.com/kindelia/hvm)'s repo. Will be ported to Kind2 soon.
+**Note:** benchmark already available on [HVM](https://github.com/higherorderco/hvm)'s repo. Will be ported to Kind soon.
 
 ### composition
 
@@ -189,7 +188,7 @@ Composes a function an exponential amount of times. Measures runtime asymptotics
 TODO
 ```
 
-**Note:** benchmark already available on [HVM](https://github.com/kindelia/hvm)'s repo. Will be ported to Kind2 soon.
+**Note:** benchmark already available on [HVM](https://github.com/higherorderco/hvm)'s repo. Will be ported to Kind soon.
 
 ### lambda_arithmetic
 
@@ -199,7 +198,7 @@ Performs arithmetic with λ-encoded ints. Measures runtime asymptotics.
 TODO
 ```
 
-**Note:** benchmark already available on [HVM](https://github.com/kindelia/hvm)'s repo. Will be ported to Kind2 soon.
+**Note:** benchmark already available on [HVM](https://github.com/higherorderco/hvm)'s repo. Will be ported to Kind soon.
 
 Replicating
 ===========
@@ -222,15 +221,15 @@ of datatype allocation, pattern-matching, functions, closures and recursion. As 
 algorithms that are heavy on mutable array manipulation and in-place loops with mostly numeric workloads.
 
 These benchmarks are focused on runtime and type-level evaluation performance. They do not cover elaboration (yet),
-which is commonly a significant source of slowdown. Kind2 doesn't have a complex elaborator, thus, it doesn't suffer
+which is commonly a significant source of slowdown. Kind doesn't have a complex elaborator, thus, it doesn't suffer
 from this problem; but, in turn, it is slightly more verbose than alternatives in certain areas. For a brilliantly
-designed elaborator, check [smalltt](https://github.com/AndrasKovacs/smalltt) by András Kovács. Kind2 aims to, in a
-future, incorporate insights from this work. Also, Kind2 does **not** have a totality checker (yet), so, it is arguably
+designed elaborator, check [smalltt](https://github.com/AndrasKovacs/smalltt) by András Kovács. Kind aims to, in a
+future, incorporate insights from this work. Also, Kind does **not** have a totality checker (yet), so, it is arguably
 doing less than alternatives; although the cost of the totality checker should be negligible in comparison to general
 evaluation, but it is still worth noting.
 
-Finally, these the type-checker all use Kind2's **Rust interpreter**. In theory, Kind2 could be compiled to machine
+Finally, these the type-checker all use Kind's **Rust interpreter**. In theory, Kind could be compiled to machine
 code, which would make it 3-4 faster, but the cost of C compilation would overshadow that. In a future, once we
 implement incremental compilation, we might be able to pre-compile the type-checker, allowing only user-defined
-functions to be injected. That would immediately make Kind2's numbers 3-4x lower. There are other incoming
+functions to be injected. That would immediately make Kind's numbers 3-4x lower. There are other incoming
 optimizations on the making, including a complete GPU runtime!
