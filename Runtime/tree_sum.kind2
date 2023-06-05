@@ -1,19 +1,19 @@
 // A binary tree
 Tree : Type
-  Leaf (value: U60) : Tree
+  Leaf (value: Data.U60) : Tree
   Node (left: Tree) (right: Tree) : Tree
 
 // Creates a tree with `2^n` elements
-Gen (n: U60) : Tree
+Gen (n: Data.U60) : Tree
 Gen 0 = Leaf 1
 Gen n = Node (Gen (- n 1)) (Gen (- n 1))
 
 // Adds all elements of a tree
-Sum (tree: Tree) : U60
+Sum (tree: Tree) : Data.U60
 Sum (Leaf x)   = x
 Sum (Node a b) = (+ (Sum a) (Sum b))
 
 // Performs 2^n additions
-Main (n: U60) {
+Main (n: Data.U60) {
   Sum (Gen n)
 }

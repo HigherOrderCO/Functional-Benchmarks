@@ -1,9 +1,9 @@
 // Computes f^(2^n)
 
-Comp (p: U60) (f: U60 -> U60) (n: U60) : U60
+Comp (p: Data.U60) (f: Data.U60 -> Data.U60) (n: Data.U60) : Data.U60
 Comp 0 f x = f x
 Comp n f x = Comp (- n 1) (k => f (f k)) x
 
 // Performs 2^n compositions
-Main (n: U60): U60
+Main (n: Data.U60): Data.U60
 Main n = Comp n (x => x) 0

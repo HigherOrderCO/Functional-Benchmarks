@@ -3,19 +3,19 @@ List (t: Type) : Type
   Nil <t: Type> : List t
   
 // Sums a list
-Sum <t: Type> (list: List U60) : U60
+Sum <t: Type> (list: List Data.U60) : Data.U60
 Sum Nil         = 0
 Sum (Cons x xs) = (+ x (Sum xs))
 
 // A list from 0 to 0
-Range (n: U60) (list: List U60) : List U60
+Range (n: Data.U60) (list: List Data.U60) : List Data.U60
 Range 0 xs = xs
 Range n xs =
   let m = (- n 1)
   Range m (Cons m xs)
 
 // Sums a big list with sum
-Main (n: U60) {
+Main (n: Data.U60) {
   let size = (* n 1000000)
   let list = Range size Nil
   Sum list
